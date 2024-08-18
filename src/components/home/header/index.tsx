@@ -1,16 +1,12 @@
-"use client";
 import { HeaderMarquee } from "@/components/home/header/HeaderMarquee";
 import { HeaderTimer } from "@/components/home/header/HeaderTimer";
 import { cn } from "@/lib/cn";
 import { ComponentProps, PropsWithChildren } from "react";
 import styles from "./styles.module.scss";
 
-type HeaderProps = {
-  ms: number;
-};
-export const Header = ({ ms }: HeaderProps) => {
+export const Header = () => {
   return (
-    <div className={cn(styles.grid, "relative isolate h-svh font-medium")}>
+    <div className={cn(styles.grid, "relative isolate h-svh min-h-[32.5rem] font-medium")}>
       <BorderVertical className="[grid-area:3/2/6/3] md:[grid-area:1/2/6/3]" />
       <BorderVertical className="hidden [grid-area:1/3/6/4] md:block" />
       <BorderVertical className="[grid-area:1/2/2/3] md:[grid-area:1/4/2/5]" />
@@ -29,12 +25,12 @@ export const Header = ({ ms }: HeaderProps) => {
         </h1>
       </Padded>
       <Padded className="hidden [grid-area:1/3/2/4] md:block">
-        <HeaderTimer ms={ms} />
+        <HeaderTimer ms={Date.now() - Date.parse("03-19-1998")} />
       </Padded>
       <Padded className="pb-12 [grid-area:1/2/2/3] md:[grid-area:1/4/2/5]">
-        <p className="max-w-[22rem] indent-10 md:indent-28">
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-          invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+        <p className="max-w-[22rem] indent-10 md:indent-24">
+          I&apos;m Tim, a creative web developer with a keen eye for detail based in Stuttgart. I
+          love creating interfaces with a beautiful and strong user experience.
         </p>
       </Padded>
       <Padded className="flex items-center leading-none [grid-area:1/3/2/4] [writing-mode:vertical-lr] md:[grid-area:1/6/2/7]">
