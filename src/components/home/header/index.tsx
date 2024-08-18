@@ -31,7 +31,7 @@ export const Header = ({ ms }: HeaderProps) => {
       <Padded className="hidden [grid-area:1/3/2/4] md:block">
         <HeaderTimer ms={ms} />
       </Padded>
-      <Padded className="[grid-area:1/2/2/3] md:[grid-area:1/4/2/5]">
+      <Padded className="pb-12 [grid-area:1/2/2/3] md:[grid-area:1/4/2/5]">
         <p className="max-w-[22rem] indent-10 md:indent-28">
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
           invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.

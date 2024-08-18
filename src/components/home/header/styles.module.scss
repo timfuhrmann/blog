@@ -1,10 +1,15 @@
 .grid {
   display: grid;
   grid-template-columns: auto 1fr auto;
-  grid-template-rows: 1fr auto 1fr auto 1fr auto theme("space.10");
+  grid-template-rows: auto auto 1fr auto 1fr auto theme("space.10");
+
+  @media (hover: none) {
+    @apply border-t-foreground/20 border-t;
+  }
 
   @screen md {
     grid-template-columns: theme("space.10") 1.5fr 3fr 3fr 1.5fr theme("space.10");
+    grid-template-rows: 1fr auto 1fr auto 1fr auto theme("space.10");
   }
 
   @screen lg {

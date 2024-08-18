@@ -57,7 +57,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(suisse.className, "leading-tight antialiased")}>{children}</body>
+      <body className={cn(suisse.className, "overscroll-none leading-tight antialiased")}>
+        {children}
+      </body>
     </html>
   );
 }
