@@ -14,7 +14,7 @@ const config: Config = {
           1: "#0a0a0a",
         },
         layer: {
-          0: "#d6c8fb",
+          0: "#fcfcf7",
           1: "#d6c8fb",
         },
       },
