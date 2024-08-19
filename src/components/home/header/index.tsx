@@ -1,22 +1,13 @@
 import { HeaderMarquee } from "@/components/home/header/HeaderMarquee";
 import { HeaderTimer } from "@/components/home/header/HeaderTimer";
 import { cn } from "@/lib/cn";
+import Link from "next/link";
 import { ComponentProps, PropsWithChildren } from "react";
 import styles from "./styles.module.scss";
 
 export const Header = () => {
   return (
     <div className={cn(styles.grid, "relative isolate h-svh min-h-[32.5rem] font-medium")}>
-      <BorderVertical className="[grid-area:3/2/6/3] md:[grid-area:1/2/6/3]" />
-      <BorderVertical className="hidden [grid-area:1/3/6/4] md:block" />
-      <BorderVertical className="[grid-area:1/2/2/3] md:[grid-area:1/4/2/5]" />
-      <BorderVertical className="hidden [grid-area:3/4/6/5] md:block" />
-      <BorderVertical className="[grid-area:3/3/6/4] md:[grid-area:1/5/6/6]" />
-      <BorderVertical className="[grid-area:1/3/2/4] md:[grid-area:1/6/6/7]" />
-      <BorderHorizontal className="[grid-area:2/1/3/4] md:[grid-area:2/1/3/7]" />
-      <BorderHorizontal className="[grid-area:3/1/4/4] md:[grid-area:3/1/4/7]" />
-      <BorderHorizontal className="[grid-area:4/2/5/3] md:[grid-area:4/4/5/5]" />
-      <BorderHorizontal className="[grid-area:5/2/6/3] md:[grid-area:5/4/6/5]" />
       <Padded className="[grid-area:1/1/2/2] md:[grid-area:1/2/2/3]">
         <h1>
           Tim
@@ -52,16 +43,35 @@ export const Header = () => {
       >
         Tim
       </Area>
-      <Area className="border-foreground/20 border-y p-0 [grid-area:6/1/7/4] md:[grid-area:6/1/7/7]">
+      <Area className="border-y border-foreground-0/20 p-0 [grid-area:6/1/7/4] md:[grid-area:6/1/7/7]">
         <div
           className={cn(
             styles.textSecondary,
-            "bg-primary py-4 font-semibold uppercase text-neutral-950"
+            "bg-layer-1 py-4 font-semibold uppercase text-foreground-1"
           )}
         >
           <HeaderMarquee text="Blog coming soon" initialLength={4} />
         </div>
       </Area>
+      <Padded className="flex items-center justify-end gap-4 [grid-area:7/1/8/7]">
+        <Link
+          href="https://www.linkedin.com/in/tim-fuhrmann/"
+          target="_blank"
+          className="text-foreground-0/60 hover:text-foreground-0"
+        >
+          [ LinkedIn ]
+        </Link>
+      </Padded>
+      <BorderVertical className="[grid-area:3/2/6/3] md:[grid-area:1/2/6/3]" />
+      <BorderVertical className="hidden [grid-area:1/3/6/4] md:block" />
+      <BorderVertical className="[grid-area:1/2/2/3] md:[grid-area:1/4/2/5]" />
+      <BorderVertical className="hidden [grid-area:3/4/6/5] md:block" />
+      <BorderVertical className="[grid-area:3/3/6/4] md:[grid-area:1/5/6/6]" />
+      <BorderVertical className="[grid-area:1/3/2/4] md:[grid-area:1/6/6/7]" />
+      <BorderHorizontal className="[grid-area:2/1/3/4] md:[grid-area:2/1/3/7]" />
+      <BorderHorizontal className="[grid-area:3/1/4/4] md:[grid-area:3/1/4/7]" />
+      <BorderHorizontal className="[grid-area:4/2/5/3] md:[grid-area:4/4/5/5]" />
+      <BorderHorizontal className="[grid-area:5/2/6/3] md:[grid-area:5/4/6/5]" />
     </div>
   );
 };
@@ -76,7 +86,7 @@ type BorderProps = {
   className?: string;
 };
 const Border = ({ className }: BorderProps) => (
-  <div className={cn("bg-foreground/20", className)} />
+  <div className={cn("bg-foreground-0/20", className)} />
 );
 
 type PaddedProps = {

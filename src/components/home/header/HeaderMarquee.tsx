@@ -19,7 +19,7 @@ export const HeaderMarquee = ({ text, initialLength }: HeaderMarqueeProps) => (
             (index) => (
               <Fragment key={index}>
                 {text}
-                <span className="inline-block size-[.3em] shrink-0 rounded-full bg-neutral-950" />
+                <span className="inline-block size-[.3em] shrink-0 rounded-full bg-foreground-1" />
               </Fragment>
             ),
             initialLength

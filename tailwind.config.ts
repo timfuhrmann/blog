@@ -9,11 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        foreground: "#0a0a0a",
-        layer: {
-          0: "#fcfcf7",
+        foreground: {
+          0: "#0a0a0a",
+          1: "#fcfcf7",
         },
-        primary: "#D6C8FB",
+        layer: {
+          0: "#D6C8FB",
+          1: "#0a0a0a",
+        },
       },
     },
   },
