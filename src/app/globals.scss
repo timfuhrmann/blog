@@ -9,4 +9,6 @@ html {
 body {
   background-color: theme("colors.layer.0");
   color: theme("colors.foreground.0");
+  max-width: theme("screens.2xl");
+  margin: 0 auto;
 }

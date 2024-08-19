@@ -18,6 +18,9 @@ const config: Config = {
           1: "#d6c8fb",
         },
       },
+      screens: {
+        "2xl": "2560px",
+      },
     },
   },
   plugins: [],
