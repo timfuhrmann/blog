@@ -20,7 +20,7 @@ export const Header = () => {
       </Padded>
       <Padded className="pb-12 [grid-area:1/2/2/3] md:[grid-area:1/4/2/5]">
         <p className="max-w-[22rem] indent-10 md:indent-24">
-          I&apos;m a creative web developer with a keen eye for detail based in Stuttgart. I love
+          I&apos;m a creative web developer with a keen eye for detail, based in Stuttgart. I love
           creating interfaces with a beautiful and strong user experience.
         </p>
       </Padded>

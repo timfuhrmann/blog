@@ -48,7 +48,7 @@ const suisse = localFont({
 export const metadata: Metadata = {
   title: "Tim Fuhrmann",
   description:
-    "I'm Tim, a creative web developer with a keen eye for detail based in Stuttgart. I love creating interfaces with a beautiful and strong user experience.",
+    "I'm Tim, a creative web developer with a keen eye for detail, based in Stuttgart. I love creating interfaces with a beautiful and strong user experience.",
 };
 
 export default function RootLayout({
