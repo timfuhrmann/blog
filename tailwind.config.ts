@@ -11,11 +11,11 @@ const config: Config = {
       colors: {
         foreground: {
           0: "#0a0a0a",
-          1: "#fcfcf7",
+          1: "#0a0a0a",
         },
         layer: {
-          0: "#D6C8FB",
-          1: "#0a0a0a",
+          0: "#d6c8fb",
+          1: "#d6c8fb",
         },
       },
     },
