@@ -1,4 +1,5 @@
 import { cn } from "@/lib/cn";
+import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { ReactNode } from "react";
@@ -60,6 +61,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn(suisse.className, "overscroll-none leading-tight antialiased")}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
