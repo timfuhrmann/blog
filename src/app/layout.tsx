@@ -73,6 +73,11 @@ export const metadata: Metadata = {
         url: "/favicon.ico",
       },
       {
+        rel: "icon shortcut",
+        type: "image/x-icon",
+        url: "/favicon.ico",
+      },
+      {
         rel: "icon",
         type: "image/png",
         sizes: "16x16",
