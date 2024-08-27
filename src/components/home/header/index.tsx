@@ -19,7 +19,7 @@ export const Header = () => {
         <HeaderTimer ms={Date.now() - Date.parse("03-19-1998")} />
       </Padded>
       <Padded className="pb-12 [grid-area:1/2/2/3] md:[grid-area:1/4/2/5]">
-        <p className="max-w-[22rem] indent-10 md:indent-24">
+        <p className="max-w-[20rem] indent-10 md:indent-12">
           I&apos;m a creative web developer with a keen eye for detail, based in Stuttgart. I love
           creating interfaces with a beautiful and strong user experience.
         </p>
@@ -30,7 +30,7 @@ export const Header = () => {
       <Area
         className={cn(
           styles.textSecondary,
-          "p-4 text-center font-semibold uppercase [grid-area:2/1/3/4] md:[grid-area:2/3/3/5]"
+          "p-4 text-center font-sans font-bold uppercase [grid-area:2/1/3/4] md:[grid-area:2/3/3/5]"
         )}
       >
         <h2>Creative Web Developer</h2>
@@ -38,7 +38,7 @@ export const Header = () => {
       <Area
         className={cn(
           styles.textPrimary,
-          "px-1 py-4 text-center font-black uppercase tracking-wider [grid-area:4/2/5/3] md:[grid-area:4/4/5/5]"
+          "px-1 py-4 text-center font-sans font-black uppercase tracking-wider [grid-area:4/2/5/3] md:[grid-area:4/4/5/5]"
         )}
       >
         Tim
@@ -47,7 +47,7 @@ export const Header = () => {
         <div
           className={cn(
             styles.textSecondary,
-            "bg-layer-1 py-4 font-semibold uppercase text-foreground-1"
+            "bg-layer-1 py-4 font-sans font-bold uppercase text-foreground-1"
           )}
         >
           <HeaderMarquee text="Blog coming soon" initialLength={4} />
