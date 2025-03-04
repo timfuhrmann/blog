@@ -25,7 +25,7 @@ export const Header = () => {
         </p>
       </Padded>
       <Padded className="flex items-center leading-none [grid-area:1/3/2/4] [writing-mode:vertical-lr] md:[grid-area:1/6/2/7]">
-        @DEPT
+        @IBM
       </Padded>
       <Area
         className={cn(
