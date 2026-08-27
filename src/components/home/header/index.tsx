@@ -33,7 +33,7 @@ export const Header = () => {
           "p-4 text-center font-sans font-bold uppercase [grid-area:2/1/3/4] md:[grid-area:2/3/3/5]"
         )}
       >
-        <h2>Creative Web Developer</h2>
+        <h2>Creative Product Engineer</h2>
       </Area>
       <Area
         className={cn(
