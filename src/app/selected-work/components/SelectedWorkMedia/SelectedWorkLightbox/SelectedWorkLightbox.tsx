@@ -1,8 +1,9 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { ComponentProps, PropsWithChildren, useEffect } from "react";
+import { ComponentProps, PropsWithChildren, useEffect, useRef } from "react";
 import { ArrowLeft, ArrowRight, X } from "react-feather";
+import { RemoveScroll } from "react-remove-scroll";
 import { Button } from "@/components/Button";
 import type { SelectedWorkGalleryItemFields } from "@/lib/contentful";
 import { GalleryItemMedia } from "../GalleryItemMedia";
@@ -42,6 +43,7 @@ export const SelectedWorkLightbox = ({
   children,
 }: PropsWithChildren<SelectedWorkLightboxProps>) => {
   const { setIsPaused } = useSelectedWorkScroll();
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   // Pause the track's wheel hijacking while this lightbox is open.
   useEffect(() => {
@@ -91,102 +93,107 @@ export const SelectedWorkLightbox = ({
             onClick={onClose}
           />
 
-          <div
-            className={cn(
-              gallery ? styles.gridGallery : styles.grid,
-              "pointer-events-none absolute top-0 left-0 h-full w-full overflow-y-auto p-4 md:p-6"
-            )}
-          >
-            <div className="[grid-area:head]">
-              <div className="flex items-center">
-                {gallery && (
-                  <LazyDiv className="body-md tracking-widest">
-                    {pad(gallery.index + 1)} / {pad(gallery.items.length)}
-                  </LazyDiv>
-                )}
+          {/* Lock body scroll while open; only the lightbox content may scroll.
+              The hoisted <video> is moved in outside React, so its wheel/touch
+              events skip the lock's React handlers; the shard matches by DOM. */}
+          <RemoveScroll ref={scrollRef} forwardProps allowPinchZoom shards={[scrollRef]}>
+            <div
+              className={cn(
+                gallery ? styles.gridGallery : styles.grid,
+                "pointer-events-none absolute top-0 left-0 h-full w-full overflow-y-auto p-4 md:p-6"
+              )}
+            >
+              <div className="[grid-area:head]">
+                <div className="flex items-center">
+                  {gallery && (
+                    <LazyDiv className="body-md tracking-widest">
+                      {pad(gallery.index + 1)} / {pad(gallery.items.length)}
+                    </LazyDiv>
+                  )}
 
-                <LazyDiv className="ml-auto">
-                  <button
-                    type="button"
-                    aria-label="Close"
-                    onClick={onClose}
-                    className="pointer-events-auto flex cursor-pointer items-center justify-center"
-                  >
-                    <X size={20} aria-hidden />
-                  </button>
-                </LazyDiv>
-              </div>
-            </div>
-
-            {gallery && (
-              <div className="flex items-start justify-end py-1 [grid-area:prev] md:items-center">
-                <LazyButton
-                  hasIconOnly
-                  variant="outline"
-                  aria-label="Previous"
-                  onClick={() => step(-1)}
-                  className="pointer-events-auto"
-                >
-                  <ArrowLeft size={18} aria-hidden />
-                </LazyButton>
-              </div>
-            )}
-
-            <div className="mx-auto flex w-full min-w-0 justify-center [grid-area:media]">
-              <motion.div
-                layoutId={layoutId}
-                layoutCrossfade={false}
-                onLayoutAnimationComplete={onLayoutAnimationComplete}
-                className="border-border-0 bg-layer-2 pointer-events-auto relative aspect-[4/3] max-h-full w-full max-w-full overflow-hidden border md:w-[clamp(56rem,50vw,80rem)]"
-                style={color ? { backgroundColor: color } : undefined}
-              >
-                {children}
-              </motion.div>
-            </div>
-
-            {gallery && (
-              <div className="flex items-start py-1 [grid-area:next] md:items-center">
-                <LazyButton
-                  hasIconOnly
-                  variant="outline"
-                  aria-label="Next"
-                  onClick={() => step(1)}
-                  className="pointer-events-auto"
-                >
-                  <ArrowRight size={18} aria-hidden />
-                </LazyButton>
-              </div>
-            )}
-
-            <LazyDiv className="[grid-area:text]">
-              <div className="pointer-events-auto pb-4 text-center md:mx-auto md:max-w-3xl">
-                <h3 className="body-md mb-2 tracking-wide uppercase">{title}</h3>
-                {description && <p className="body-sm text-ghost-1">{description}</p>}
-              </div>
-            </LazyDiv>
-
-            {gallery && (
-              <LazyDiv className="hidden [grid-area:gallery] md:block">
-                <div className="pointer-events-auto flex justify-center gap-2 overflow-x-auto">
-                  {gallery.items.map((item, i) => (
+                  <LazyDiv className="ml-auto">
                     <button
-                      key={i}
                       type="button"
-                      aria-label={`Show item ${i + 1}`}
-                      aria-current={i === gallery.index}
-                      onClick={() => gallery.onIndexChange(i)}
-                      className={cn(
-                        "border-border-0 bg-layer-2 relative aspect-[4/3] w-[clamp(3.5rem,4vw,8rem)] shrink-0 cursor-pointer overflow-hidden border opacity-40 transition-opacity duration-150 hover:opacity-100",
-                        { ["border-foreground-2 opacity-100"]: i === gallery.index }
-                      )}
+                      aria-label="Close"
+                      onClick={onClose}
+                      className="pointer-events-auto flex cursor-pointer items-center justify-center"
                     >
-                      <GalleryItemMedia item={item} variant="thumbnail" />
+                      <X size={20} aria-hidden />
                     </button>
-                  ))}
+                  </LazyDiv>
+                </div>
+              </div>
+
+              {gallery && (
+                <div className="flex items-start justify-end py-1 [grid-area:prev] md:items-center">
+                  <LazyButton
+                    hasIconOnly
+                    variant="outline"
+                    aria-label="Previous"
+                    onClick={() => step(-1)}
+                    className="pointer-events-auto"
+                  >
+                    <ArrowLeft size={18} aria-hidden />
+                  </LazyButton>
+                </div>
+              )}
+
+              <div className="mx-auto flex w-full min-w-0 justify-center [grid-area:media]">
+                <motion.div
+                  layoutId={layoutId}
+                  layoutCrossfade={false}
+                  onLayoutAnimationComplete={onLayoutAnimationComplete}
+                  className="border-border-0 bg-layer-2 pointer-events-auto relative aspect-[4/3] max-h-full w-full max-w-full overflow-hidden border md:w-[clamp(56rem,50vw,80rem)]"
+                  style={color ? { backgroundColor: color } : undefined}
+                >
+                  {children}
+                </motion.div>
+              </div>
+
+              {gallery && (
+                <div className="flex items-start py-1 [grid-area:next] md:items-center">
+                  <LazyButton
+                    hasIconOnly
+                    variant="outline"
+                    aria-label="Next"
+                    onClick={() => step(1)}
+                    className="pointer-events-auto"
+                  >
+                    <ArrowRight size={18} aria-hidden />
+                  </LazyButton>
+                </div>
+              )}
+
+              <LazyDiv className="[grid-area:text]">
+                <div className="pointer-events-auto pb-4 text-center md:mx-auto md:max-w-3xl">
+                  <h3 className="body-md mb-2 tracking-wide uppercase">{title}</h3>
+                  {description && <p className="body-sm text-ghost-1">{description}</p>}
                 </div>
               </LazyDiv>
-            )}
-          </div>
+
+              {gallery && (
+                <LazyDiv className="hidden [grid-area:gallery] md:block">
+                  <div className="pointer-events-auto flex justify-center gap-2 overflow-x-auto">
+                    {gallery.items.map((item, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        aria-label={`Show item ${i + 1}`}
+                        aria-current={i === gallery.index}
+                        onClick={() => gallery.onIndexChange(i)}
+                        className={cn(
+                          "border-border-0 bg-layer-2 relative aspect-[4/3] w-[clamp(3.5rem,4vw,8rem)] shrink-0 cursor-pointer overflow-hidden border opacity-40 transition-opacity duration-150 hover:opacity-100",
+                          { ["border-foreground-2 opacity-100"]: i === gallery.index }
+                        )}
+                      >
+                        <GalleryItemMedia item={item} variant="thumbnail" />
+                      </button>
+                    ))}
+                  </div>
+                </LazyDiv>
+              )}
+            </div>
+          </RemoveScroll>
         </motion.div>
       )}
     </AnimatePresence>

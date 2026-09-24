@@ -21,6 +21,7 @@
     "react-dom": "^19.2.8",
     "react-feather": "^2.0.10",
     "react-player": "^3.4.0",
+    "react-remove-scroll": "^2.7.2",
     "sass": "^1.103.1",
     "server-only": "^0.0.1",
     "sonner": "^2.0.8",
