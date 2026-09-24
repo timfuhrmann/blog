@@ -52,6 +52,15 @@
   }
 }
 
+@layer base {
+  /* Square, currentColor ring instead of the browser's default focus outline.
+     Keyboard focus only; mouse clicks never show it. */
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
 body {
   max-width: var(--breakpoint-2xl);
   min-height: 100svh;

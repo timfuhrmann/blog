@@ -4,8 +4,8 @@ import { motion } from "motion/react";
 import type { PropsWithChildren, ReactNode } from "react";
 import { cn } from "cn";
 
-/** Thumbnail media is grey until hovered; the lightbox's copy never is. */
-export const GRAYSCALE_CLASS = "grayscale group-hover:grayscale-0";
+/** Thumbnail media is grey until hovered or focused; the lightbox's copy never is. */
+export const GRAYSCALE_CLASS = "grayscale group-hover:grayscale-0 group-focus-visible:grayscale-0";
 
 type SelectedWorkThumbnailProps = {
   layoutId: string;

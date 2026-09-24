@@ -85,7 +85,7 @@ export const SelectedWorkLightbox = ({
                 render={
                   <motion.div
                     layoutRoot
-                    className="text-foreground-2 fixed inset-0 isolate"
+                    className="text-foreground-2 fixed inset-0 isolate outline-none"
                     initial={{ pointerEvents: "auto", zIndex: 50 }}
                     animate={{ pointerEvents: "auto", zIndex: 50, opacity: 1 }}
                     // Base UI hides the popup once its own animations finish (`getAnimations()`), and
@@ -185,7 +185,7 @@ export const SelectedWorkLightbox = ({
 
                   {gallery && (
                     <LazyDiv className="hidden [grid-area:gallery] md:block">
-                      <div className="pointer-events-auto flex justify-center gap-2 overflow-x-auto">
+                      <div className="pointer-events-auto -m-1 flex justify-center gap-2 overflow-x-auto p-1">
                         {gallery.items.map((item, i) => (
                           <button
                             key={i}
@@ -194,7 +194,7 @@ export const SelectedWorkLightbox = ({
                             aria-current={i === gallery.index}
                             onClick={() => gallery.onIndexChange(i)}
                             className={cn(
-                              "border-border-0 bg-layer-2 relative aspect-[4/3] w-[clamp(3.5rem,4vw,8rem)] shrink-0 cursor-pointer overflow-hidden border opacity-40 transition-opacity duration-150 hover:opacity-100",
+                              "border-border-0 bg-layer-2 relative aspect-[4/3] w-[clamp(3.5rem,4vw,8rem)] shrink-0 cursor-pointer overflow-hidden border opacity-40 transition-opacity duration-150 hover:opacity-100 focus-visible:opacity-100",
                               { ["border-foreground-2 opacity-100"]: i === gallery.index }
                             )}
                           >

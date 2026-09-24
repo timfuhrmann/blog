@@ -45,7 +45,7 @@ export default async function SelectedWorkPage({ params }: PageProps) {
         />
         <SelectedWork entries={entry.entries} />
       </Layout>
-      <Footer />
+      <Footer hasHomeLink />
     </>
   );
 }

@@ -7,7 +7,7 @@ export const tvButton = tv({
   variants: {
     variant: {
       primary:
-        "bg-foreground-0 text-foreground-2 hover:bg-layer-1 hover:text-foreground-0 active:bg-layer-1 active:text-foreground-0",
+        "bg-foreground-0 text-foreground-2 focus-visible:outline-foreground-0 hover:bg-layer-1 hover:text-foreground-0 active:bg-layer-1 active:text-foreground-0",
       outline:
         "border-2 border-[currentColor]/40 bg-transparent text-[currentColor] hover:bg-[currentColor]/10 active:bg-[currentColor]/10",
     },

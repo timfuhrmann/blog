@@ -1,16 +1,15 @@
-"use client";
-
 import { cn } from "cn";
 import { Link } from "@/components/Link";
-import { usePathname } from "next/navigation";
 import { ComponentProps } from "react";
 
-export const Footer = () => {
-  const pathname = usePathname();
+type FooterProps = {
+  hasHomeLink?: boolean;
+};
 
+export const Footer = ({ hasHomeLink }: FooterProps) => {
   return (
     <footer className="border-border-0 flex shrink-0 items-center justify-end gap-4 border-t px-3 py-2 md:px-4 md:py-2.5">
-      {pathname !== "/" && <FooterLink href="/">[ Home ]</FooterLink>}
+      {hasHomeLink && <FooterLink href="/">[ Home ]</FooterLink>}
       <FooterLink href="https://www.linkedin.com/in/tim-fuhrmann/" target="_blank">
         [ LinkedIn ]
       </FooterLink>

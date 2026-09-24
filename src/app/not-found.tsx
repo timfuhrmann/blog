@@ -80,7 +80,7 @@ export default function NotFound() {
           }}
         />
       </Layout>
-      <Footer />
+      <Footer hasHomeLink />
     </>
   );
 }

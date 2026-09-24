@@ -24,7 +24,7 @@ export const HeaderBirthday = () => {
         className="cursor-pointer"
         onClick={() => setShowBirthday((prevState) => !prevState)}
       >
-        {showBirthday ? "19.03.1998" : <HeaderTimer since={BIRTHDAY} />}
+        {showBirthday ? "1998/03/19" : <HeaderTimer since={BIRTHDAY} />}
       </button>
       {/* Runs during HTML parsing, before paint and before React loads. */}
       {isServerRender && (
