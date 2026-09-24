@@ -5,6 +5,10 @@
   grid-template-columns: [bleed-start] auto [content-start] 1fr [content-end] auto [bleed-end];
   grid-auto-rows: min-content;
 
+  @media (hover: none) {
+    border-top: 1px solid var(--color-border-0);
+  }
+
   @variant md {
     grid-template-columns:
       [bleed-start] theme(spacing.10)

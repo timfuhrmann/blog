@@ -16,8 +16,9 @@ export function HomeView({ children }: HomeViewProps) {
         <Header
           renderIntro={
             <p className="body-md max-w-[max(20rem,50%)] indent-10 md:indent-12">
-              I&apos;m a creative web developer with a keen eye for detail, based in Stuttgart. I
-              love creating interfaces with a beautiful and strong user experience.
+              Senior software engineer with a keen eye for detail. I care about how software feels,
+              so I build interfaces with a strong user experience, and the systems behind them, from
+              idea to production.
             </p>
           }
         />
@@ -28,7 +29,7 @@ export function HomeView({ children }: HomeViewProps) {
           md={{ col: ["split-1", "split-2"] }}
           className="fluid-display-sm p-4 text-center font-bold uppercase"
         >
-          <h2>Creative Product Engineer</h2>
+          <h2>Senior Software Engineer</h2>
         </Area>
 
         <Area
