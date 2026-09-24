@@ -13,7 +13,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" className="overscroll-none">
+    <html lang="en">
       <body
         data-root
         className={cn(
