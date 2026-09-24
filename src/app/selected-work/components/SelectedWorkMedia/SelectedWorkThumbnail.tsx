@@ -58,7 +58,7 @@ export const SelectedWorkThumbnail = ({
     {renderChips && (
       <span
         className={cn(
-          "pointer-events-none absolute bottom-0 left-0 flex w-full items-end justify-between p-3 transition-opacity duration-300",
+          "pointer-events-none absolute bottom-0 left-0 flex w-full items-end justify-between p-3 transition-opacity duration-300 will-change-transform",
           {
             ["opacity-0"]: isInColor,
           }
