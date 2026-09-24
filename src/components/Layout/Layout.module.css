@@ -1,0 +1,31 @@
+@reference "tailwindcss";
+
+.grid {
+  display: grid;
+  grid-template-columns: [bleed-start] auto [content-start] 1fr [content-end] auto [bleed-end];
+  grid-auto-rows: min-content;
+
+  @variant md {
+    grid-template-columns:
+      [bleed-start] theme(spacing.10)
+      [content-start] 1.5fr [split-1] 3fr [center] 3fr [split-2] 1.5fr
+      [content-end] theme(spacing.10) [bleed-end];
+  }
+
+  @variant lg {
+    grid-template-columns:
+      [bleed-start] theme(spacing.10)
+      [content-start] 1fr [split-1] 3fr [center] 3fr [split-2] 1fr
+      [content-end] theme(spacing.10) [bleed-end];
+  }
+}
+
+.area {
+  grid-row: var(--row);
+  grid-column: var(--col);
+
+  @variant md {
+    grid-row: var(--row-md, var(--row));
+    grid-column: var(--col-md, var(--col));
+  }
+}

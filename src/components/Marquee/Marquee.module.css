@@ -1,0 +1,18 @@
+.marqueeAnimation {
+  @media (prefers-reduced-motion: no-preference) {
+    animation: marquee-scroll 50s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transform: translate3d(-20%, 0, 0);
+  }
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}

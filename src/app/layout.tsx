@@ -1,10 +1,11 @@
-import { cn } from "@/lib/cn";
+import { cn } from "cn";
 import { Analytics } from "@vercel/analytics/react";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
-import "./globals.scss";
+import { Toaster } from "sonner";
+import "./globals.css";
 
 export default function RootLayout({
   children,
@@ -14,13 +15,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
+        data-root
         className={cn(
           GeistMono.variable,
           GeistSans.variable,
-          "overscroll-none font-mono text-sm leading-tight antialiased"
+          "bg-layer-0 text-foreground-0 2xl:border-border-0 mx-auto my-0 flex flex-col overscroll-none font-mono text-sm leading-tight antialiased 2xl:border-x"
         )}
       >
         {children}
+        <Toaster position="bottom-right" />
         <Analytics />
       </body>
     </html>
