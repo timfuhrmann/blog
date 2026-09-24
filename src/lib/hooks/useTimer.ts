@@ -1,18 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useSyncExternalStore } from "react";
 
-export const useTimer = (ms: number) => {
-  const initialDate = useRef(Date.now());
-  const initialMsRef = useRef(ms);
-  const [time, setTime] = useState(Math.max(0, ms));
+const subscribe = (onTick: () => void) => {
+  const interval = setInterval(onTick, 1000);
+  return () => clearInterval(interval);
+};
 
-  useEffect(() => {
-    const timeout = setInterval(() => {
-      requestAnimationFrame(() => {
-        setTime(initialMsRef.current + (Date.now() - initialDate.current));
-      });
-    }, 1000);
-    return () => clearTimeout(timeout);
-  }, []);
+/** Floored to the second so consecutive reads within a tick return the same snapshot. */
+const getNow = () => Math.floor(Date.now() / 1000) * 1000;
+
+/** Elapsed time since `since`, ticking every second. */
+export const useTimer = (since: number) => {
+  const now = useSyncExternalStore(subscribe, getNow, getNow);
+  const time = Math.max(0, now - since);
 
   const msDay = 1000 * 60 * 60 * 24;
   const days = Math.floor(time / msDay);

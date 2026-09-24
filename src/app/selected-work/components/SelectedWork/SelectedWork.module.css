@@ -1,11 +1,7 @@
-@reference "../../../../app/globals.css";
-
 .track {
-  @media not (max-height: theme(--sw-short-viewport)) {
-    scrollbar-width: none;
+  scrollbar-width: none;
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
+  &::-webkit-scrollbar {
+    display: none;
   }
 }

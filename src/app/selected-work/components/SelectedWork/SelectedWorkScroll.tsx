@@ -8,6 +8,7 @@ import {
   useState,
   type ReactNode,
   type RefObject,
+  useMemo,
 } from "react";
 
 type SelectedWorkScrollValue = {
@@ -40,14 +41,13 @@ export const SelectedWorkScrollProvider = ({ children }: SelectedWorkScrollProvi
 
     if (isPaused) return; // let the lightbox be
 
-    // Shared with the selected-work CSS modules via the --sw-short-viewport theme token.
-    const shortViewport = getComputedStyle(document.documentElement)
-      .getPropertyValue("--sw-short-viewport")
-      .trim();
-    const SHORT_VIEWPORT = `(max-height: ${shortViewport})`;
+    // Touch devices scroll the track natively.
+    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 
     const onWheel = (e: WheelEvent) => {
-      if (window.matchMedia(SHORT_VIEWPORT).matches) return;
+      if (!finePointer.matches) return;
+      // If the page overflows vertically, keep regular vertical scrolling.
+      if (document.body.scrollHeight > window.innerHeight) return;
       const max = track.scrollWidth - track.clientWidth;
       if (max <= 0) return;
 
@@ -64,7 +64,9 @@ export const SelectedWorkScrollProvider = ({ children }: SelectedWorkScrollProvi
   }, [isPaused]);
 
   return (
-    <SelectedWorkScrollContext.Provider value={{ isPaused, setIsPaused }}>
+    <SelectedWorkScrollContext.Provider
+      value={useMemo(() => ({ isPaused, setIsPaused }), [isPaused])}
+    >
       {children(trackRef)}
     </SelectedWorkScrollContext.Provider>
   );

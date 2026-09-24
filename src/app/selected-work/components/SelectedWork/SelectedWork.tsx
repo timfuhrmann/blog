@@ -4,6 +4,7 @@ import { Area, Padded } from "@/components/Layout/Layout";
 import { motion } from "motion/react";
 import type { SelectedWorkEntryFields } from "@/lib/contentful";
 import { SelectedWorkMedia } from "../SelectedWorkMedia/SelectedWorkMedia";
+import { SelectedWorkNav } from "./SelectedWorkNav";
 import { SelectedWorkScrollProvider } from "./SelectedWorkScroll";
 import { cn } from "cn";
 import styles from "./SelectedWork.module.css";
@@ -16,8 +17,13 @@ export const SelectedWork = ({ entries }: SelectedWorkProps) => (
   <SelectedWorkScrollProvider>
     {(trackRef) => (
       <>
-        <Padded row={[2, 3]} size="lg" className="border-border-0 relative z-10 border-b">
+        <Padded
+          row={[2, 3]}
+          size="lg"
+          className="border-border-0 relative z-10 flex items-end justify-between gap-4 border-b"
+        >
           <h2 className="fluid-display-md font-black uppercase">Selected Work</h2>
+          <SelectedWorkNav trackRef={trackRef} />
         </Padded>
 
         {/* The track reaches up under the header so its clip covers the
