@@ -21,7 +21,8 @@ export const SelectedWorkMedia = ({ entry }: SelectedWorkMediaProps) => {
       <SelectedWorkVideo
         isContain={first.isContain}
         color={first.color}
-        entry={entry}
+        title={first.title ?? entry.title}
+        description={first.description}
         videoUrl={`https:${first.video.fields.file.url}`}
       />
     );
@@ -32,7 +33,8 @@ export const SelectedWorkMedia = ({ entry }: SelectedWorkMediaProps) => {
       <SelectedWorkImage
         isContain={first.isContain}
         color={first.color}
-        entry={entry}
+        title={first.title ?? entry.title}
+        description={first.description}
         media={first.image}
       />
     );

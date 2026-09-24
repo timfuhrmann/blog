@@ -159,7 +159,7 @@ export const SelectedWorkLightbox = ({
             )}
 
             <LazyDiv className="[grid-area:text]">
-              <div className="pointer-events-auto pb-4 text-center md:mx-auto md:max-w-prose">
+              <div className="pointer-events-auto pb-4 text-center md:mx-auto md:max-w-3xl">
                 <h3 className="body-md mb-2 tracking-wide uppercase">{title}</h3>
                 {description && <p className="body-sm text-ghost-1">{description}</p>}
               </div>

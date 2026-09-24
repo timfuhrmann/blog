@@ -3,7 +3,7 @@ import type { SelectedWorkGalleryItemFields } from "@/lib/contentful";
 import { cn } from "cn";
 
 const setInitialVolume = (el: HTMLVideoElement | null) => {
-  if (el) el.volume = 0;
+  if (el) el.volume = 0.25;
 };
 
 export const GalleryItemMedia = ({

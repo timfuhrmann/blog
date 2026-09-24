@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Play } from "react-feather";
-import type { SelectedWorkEntryFields } from "@/lib/contentful";
 import { HoistedVideoSource, HoistedVideoTarget, useHoistedVideoSlotRef } from "./HoistedVideo";
 import { SelectedWorkLightbox } from "./SelectedWorkLightbox/SelectedWorkLightbox";
 import { MediaChip, SelectedWorkThumbnail } from "./SelectedWorkThumbnail";
@@ -11,20 +10,22 @@ import { useLightboxState } from "./useLightboxState";
 type SelectedWorkVideoProps = {
   isContain?: boolean;
   color?: string;
-  entry: SelectedWorkEntryFields;
+  title: string;
+  description?: string;
   videoUrl: string;
 };
 
 export const SelectedWorkVideo = ({
   isContain,
   color,
-  entry,
+  title,
+  description,
   videoUrl,
 }: SelectedWorkVideoProps) => {
   const lightbox = useLightboxState();
   const [isHovered, setIsHovered] = useState(false);
 
-  const layoutId = `media-${entry.title}`;
+  const layoutId = `media-${title}`;
 
   const slotRef = useHoistedVideoSlotRef();
 
@@ -32,7 +33,7 @@ export const SelectedWorkVideo = ({
     <>
       <SelectedWorkThumbnail
         layoutId={layoutId}
-        label={`Open ${entry.title}`}
+        label={`Open ${title}`}
         isClosing={lightbox.isClosing}
         isInColor={lightbox.isInColor}
         onOpen={lightbox.open}
@@ -58,8 +59,8 @@ export const SelectedWorkVideo = ({
       <SelectedWorkLightbox
         isOpen={lightbox.isOpen}
         layoutId={layoutId}
-        title={entry.title}
-        description={entry.description}
+        title={title}
+        description={description}
         color={color}
         onClose={lightbox.close}
       >

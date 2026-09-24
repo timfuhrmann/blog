@@ -14,11 +14,18 @@ const ZoomIcon = () => <Search size={20} color="currentColor" aria-hidden />;
 type SelectedWorkImageProps = {
   isContain?: boolean;
   color?: string;
-  entry: SelectedWorkEntryFields;
+  title: string;
+  description?: string;
   media: ContentfulAsset;
 };
 
-export const SelectedWorkImage = ({ isContain, color, entry, media }: SelectedWorkImageProps) => {
+export const SelectedWorkImage = ({
+  isContain,
+  color,
+  title,
+  description,
+  media,
+}: SelectedWorkImageProps) => {
   const lightbox = useLightboxState();
   // The image is decoded and painted. Until then the container's flat
   // background stands in, so the thumbnail fades in instead of popping.
@@ -26,13 +33,13 @@ export const SelectedWorkImage = ({ isContain, color, entry, media }: SelectedWo
   // cached hit that lands before hydration still clears this.
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const layoutId = `media-${entry.title}`;
+  const layoutId = `media-${title}`;
 
   return (
     <>
       <SelectedWorkThumbnail
         layoutId={layoutId}
-        label={`Open ${entry.title}`}
+        label={`Open ${title}`}
         isClosing={lightbox.isClosing}
         isInColor={lightbox.isInColor}
         onOpen={lightbox.open}
@@ -46,7 +53,7 @@ export const SelectedWorkImage = ({ isContain, color, entry, media }: SelectedWo
       >
         <ContentfulImage
           asset={media}
-          alt={entry.title}
+          alt={title}
           sizes="(min-width: 768px) 768px, 100vw"
           className={cn(
             "h-full w-full object-cover transition-[opacity,filter] duration-300 select-none",
@@ -64,14 +71,14 @@ export const SelectedWorkImage = ({ isContain, color, entry, media }: SelectedWo
       <SelectedWorkLightbox
         isOpen={lightbox.isOpen}
         layoutId={layoutId}
-        title={entry.title}
-        description={entry.description}
+        title={title}
+        description={description}
         color={color}
         onClose={lightbox.close}
       >
         <ContentfulImage
           asset={media}
-          alt={entry.title}
+          alt={title}
           sizes="(min-width: 768px) 768px, 100vw"
           className={cn("h-full w-full object-cover", {
             ["object-contain"]: isContain,
