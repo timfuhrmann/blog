@@ -34,6 +34,16 @@ export function proxy(request: NextRequest) {
     return NextResponse.rewrite(url, { headers: response.headers });
   }
 
+  if (url.pathname.startsWith("/home/")) {
+    url.pathname = `/`;
+    return NextResponse.redirect(url, { headers: response.headers });
+  }
+
+  if (url.pathname.startsWith("/selected-work/")) {
+    url.pathname = `/selected-work`;
+    return NextResponse.redirect(url, { headers: response.headers });
+  }
+
   return response;
 }
 
