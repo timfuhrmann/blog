@@ -1,9 +1,7 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header/Header";
 import { Area, GridLines, Layout } from "@/components/Layout/Layout";
-import { cn } from "cn";
 import { ReactNode } from "react";
-import styles from "./HomeView.module.css";
 
 type HomeViewProps = {
   children: ReactNode;
@@ -12,7 +10,7 @@ type HomeViewProps = {
 export function HomeView({ children }: HomeViewProps) {
   return (
     <>
-      <Layout className={cn(styles.rows, "min-h-[32.5rem] flex-1")}>
+      <Layout className="min-h-[32.5rem] flex-1 grid-rows-[auto_auto_1fr_auto_1fr] md:grid-rows-[1fr_auto_1fr_auto_1fr]">
         <Header
           renderIntro={
             <p className="body-md max-w-[max(20rem,50%)] indent-10 md:indent-12">

@@ -1,9 +1,0 @@
-@reference "tailwindcss";
-
-.rows {
-  grid-template-rows: auto auto 1fr auto 1fr;
-
-  @variant md {
-    grid-template-rows: 1fr auto 1fr auto 1fr;
-  }
-}
