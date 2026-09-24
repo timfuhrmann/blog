@@ -22,7 +22,7 @@ export const Header = ({ renderIntro }: HeaderProps) => {
         md={{ col: ["content-start", "split-1"] }}
         className={CELL}
       >
-        <Link href="/">
+        <Link href="/" className="inline-block">
           <h1 className="body-md leading-tight font-medium">
             Tim
             <br />
