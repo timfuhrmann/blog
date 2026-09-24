@@ -29,21 +29,23 @@ export const SelectedWork = ({ entries }: SelectedWorkProps) => (
         {/* The track reaches up under the header so its clip covers the
             viewport: a thumbnail shrinking back out of the lightbox animates
             inside the track, and would otherwise be cut off at its top edge.
-            Subgrid keeps the cards in row 3; the header sits above it. */}
-        <Area row={[1, 4]} className="grid min-h-0 grid-rows-subgrid">
+            A negative margin and matching padding stretch the clip upward
+            while the cards stay in row 3. Not a subgrid over rows 1-3: iOS
+            Safari flashes the cards over the header with that. */}
+        <Area row={[3, 4]} className="grid min-h-0">
           <motion.div
             ref={trackRef}
             data-track
             layoutScroll
             className={cn(
               styles.track,
-              "row-span-full grid min-h-0 auto-cols-[min(21.5rem,85%)] grid-flow-col grid-rows-subgrid overflow-x-auto overscroll-x-contain lg:auto-cols-[max(21.5rem,30%)]"
+              "-mt-[100lvh] grid min-h-0 auto-cols-[min(21.5rem,85%)] grid-flow-col overflow-x-auto overscroll-x-contain pt-[100lvh] lg:auto-cols-[max(21.5rem,30%)]"
             )}
           >
             {entries.map((item) => (
               <article
                 key={item.title}
-                className="border-border-0 row-start-3 flex flex-col border-r px-3 py-4 md:p-6"
+                className="border-border-0 flex flex-col border-r px-3 py-4 md:p-6"
               >
                 <div className="body-md font-medium">{item.year}</div>
                 <div className="mt-4 mb-5 flex items-center gap-2.5">
