@@ -14,9 +14,9 @@ export function HomeView({ children }: HomeViewProps) {
         <Header
           renderIntro={
             <p className="body-md max-w-[max(20rem,50%)] indent-10 md:indent-12">
-              Senior software engineer with a keen eye for detail. I care about how software feels,
-              so I build interfaces with a strong user experience, and the systems behind them, from
-              idea to production.
+              Senior software engineer with a keen eye for detail, who cares about how software
+              feels. I build interfaces with a strong user experience and the systems behind them,
+              from idea to production.
             </p>
           }
         />

@@ -33,7 +33,7 @@ export const SelectedWorkVideo = ({
     <>
       <SelectedWorkThumbnail
         layoutId={layoutId}
-        label={`Open ${title}`}
+        label={`Play video: ${title}`}
         isClosing={lightbox.isClosing}
         isInColor={lightbox.isInColor}
         onOpen={lightbox.open}
@@ -62,7 +62,7 @@ export const SelectedWorkVideo = ({
         title={title}
         description={description}
         color={color}
-        onClose={lightbox.close}
+        onOpenChange={lightbox.onOpenChange}
       >
         <HoistedVideoTarget slotRef={slotRef} />
       </SelectedWorkLightbox>

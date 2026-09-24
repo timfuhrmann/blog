@@ -33,7 +33,7 @@ export default function RootLayout({
 export const metadata: Metadata = {
   title: "Tim Fuhrmann",
   description:
-    "I'm Tim, a creative web developer with a keen eye for detail, based in Stuttgart. I love creating interfaces with a beautiful and strong user experience.",
+    "I'm Tim, a senior software engineer with a keen eye for detail. I care about how software feels, so I build interfaces with a strong user experience, and the systems behind them, from idea to production.",
   icons: {
     icon: [
       {

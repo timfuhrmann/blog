@@ -39,7 +39,7 @@ export const SelectedWorkImage = ({
     <>
       <SelectedWorkThumbnail
         layoutId={layoutId}
-        label={`Open ${title}`}
+        label={`Open image: ${title}`}
         isClosing={lightbox.isClosing}
         isInColor={lightbox.isInColor}
         onOpen={lightbox.open}
@@ -74,7 +74,7 @@ export const SelectedWorkImage = ({
         title={title}
         description={description}
         color={color}
-        onClose={lightbox.close}
+        onOpenChange={lightbox.onOpenChange}
       >
         <ContentfulImage
           asset={media}

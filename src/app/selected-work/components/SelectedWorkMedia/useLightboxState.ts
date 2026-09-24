@@ -19,9 +19,10 @@ export const useLightboxState = () => {
     /** The thumbnail wears the lightbox's look: full colour, chips hidden. */
     isInColor: isOpen || isClosing,
     open: () => setIsOpen(true),
-    close: () => {
-      setIsClosing(true);
-      setIsOpen(false);
+    /** Closing also marks `isClosing` until the thumbnail `settle`s. */
+    onOpenChange: (open: boolean) => {
+      if (!open) setIsClosing(true);
+      setIsOpen(open);
     },
     /** The thumbnail's shared-layout animation has landed. */
     settle: () => setIsClosing(false),

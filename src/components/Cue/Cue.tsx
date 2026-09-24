@@ -23,7 +23,7 @@ export const Cue = ({ message }: CueProps) => {
         onAnimationEnd={() => setIsWaving(false)}
       >
         <p className="body-md">
-          <Message message={message} disableLinks waving={isWaving} />
+          <Message message={message} waving={isWaving} />
         </p>
         <span className="body-md flex shrink-0 items-center gap-2.5 tracking-wide uppercase">
           Selected work{" "}

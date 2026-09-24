@@ -42,7 +42,7 @@ export const SelectedWorkGallery = ({ entry, items }: SelectedWorkGalleryProps) 
     <>
       <SelectedWorkThumbnail
         layoutId={layoutId}
-        label={`Open ${entry.title} gallery`}
+        label={`Open gallery: ${entry.title}`}
         isClosing={lightbox.isClosing}
         isInColor={lightbox.isInColor}
         onOpen={() => {
@@ -87,7 +87,7 @@ export const SelectedWorkGallery = ({ entry, items }: SelectedWorkGalleryProps) 
         title={current.title || entry.title}
         description={current.description}
         color={current.color}
-        onClose={lightbox.close}
+        onOpenChange={lightbox.onOpenChange}
         gallery={{
           index,
           items,
