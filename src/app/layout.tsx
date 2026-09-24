@@ -1,5 +1,5 @@
 import { cn } from "cn";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@/components/Analytics";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
