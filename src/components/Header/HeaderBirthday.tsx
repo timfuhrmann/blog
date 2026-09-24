@@ -13,7 +13,7 @@ export const HeaderBirthday = () => {
       className="cursor-pointer"
       onClick={() => setShowBirthday((prevState) => !prevState)}
     >
-      {showBirthday ? "19.03.1998" : <HeaderTimer ms={Date.now() - Date.parse("03-19-1998")} />}
+      {showBirthday ? "19.03.1998" : <HeaderTimer ms={Date.now() - new Date(1998, 2, 19).getTime()} />}
     </button>
   );
 };

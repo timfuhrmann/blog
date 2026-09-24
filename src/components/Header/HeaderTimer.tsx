@@ -7,9 +7,9 @@ type HeaderTimerProps = {
 export const HeaderTimer = ({ ms }: HeaderTimerProps) => {
   const { days, hours, minutes, seconds } = useTimer(ms);
   return (
-    <>
+    <span suppressHydrationWarning>
       {formatNumber(days)}:{formatNumber(hours)}:{formatNumber(minutes)}:{formatNumber(seconds)}
-    </>
+    </span>
   );
 };
 

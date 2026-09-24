@@ -10,7 +10,6 @@ type CueProps = {
 };
 
 export const Cue = ({ message }: CueProps) => {
-  const [waveTrigger, setWaveTrigger] = useState<number>();
   const [isWaving, setIsWaving] = useState(false);
 
   return (
@@ -19,14 +18,12 @@ export const Cue = ({ message }: CueProps) => {
         href="/selected-work"
         className="group bg-layer-1 text-foreground-1 flex flex-wrap items-center justify-between gap-4 px-4 py-4 no-underline md:px-6"
         onMouseEnter={() => {
-          if (isWaving) return;
           setIsWaving(true);
-          setWaveTrigger((trigger) => (trigger ?? 0) + 1);
         }}
         onAnimationEnd={() => setIsWaving(false)}
       >
         <p className="body-md">
-          <Message message={message} disableLinks waveTrigger={waveTrigger} />
+          <Message message={message} disableLinks waving={isWaving} />
         </p>
         <span className="body-md flex shrink-0 items-center gap-2.5 tracking-wide uppercase">
           Selected work{" "}
