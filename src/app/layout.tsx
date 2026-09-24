@@ -13,13 +13,13 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="overscroll-none">
       <body
         data-root
         className={cn(
           GeistMono.variable,
           GeistSans.variable,
-          "bg-layer-0 text-foreground-0 2xl:border-border-0 mx-auto my-0 flex flex-col overscroll-none font-mono text-sm leading-tight antialiased 2xl:border-x"
+          "bg-layer-0 text-foreground-0 2xl:border-border-0 mx-auto my-0 flex flex-col font-mono text-sm leading-tight antialiased 2xl:border-x"
         )}
       >
         {children}
