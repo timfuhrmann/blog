@@ -1,0 +1,5 @@
+@reference "./globals.css";
+
+.rows {
+  grid-template-rows: auto auto minmax(0, 1fr);
+}

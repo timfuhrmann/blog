@@ -1,0 +1,31 @@
+@reference "../../../../../app/globals.css";
+
+.grid {
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  grid-template-columns: 1fr;
+  grid-template-areas: "head" "media" "text";
+  gap: theme(spacing.4);
+}
+
+.gridGallery {
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    "head head head"
+    "media media media"
+    "prev text next";
+  gap: theme(spacing.4) theme(spacing.3);
+
+  @variant md {
+    grid-template-rows: 1fr auto 1fr auto;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-areas:
+      "head head head"
+      "prev media next"
+      ". text ."
+      "gallery gallery gallery";
+    column-gap: theme(spacing.6);
+  }
+}

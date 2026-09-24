@@ -1,12 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   transpilePackages: ["geist"],
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.md$/,
-      use: "raw-loader",
-    });
-    return config;
+  // Non-default qualities used with <ContentfulImage /> must be whitelisted (Next 16).
+  images: {
+    qualities: [75, 85, 100],
   },
 };
 

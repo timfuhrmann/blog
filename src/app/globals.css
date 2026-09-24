@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@theme {
+  --color-foreground-0: #0a0a0a;
+  --color-foreground-1: #0a0a0a;
+  --color-foreground-2: #fcfcf7;
+  --color-layer-0: #fcfcf7;
+  --color-layer-1: #d6c8fb;
+  --color-layer-2: #e6e4da;
+  --color-border-0: #ccccc8;
+  --color-border-1: #7a7a78;
+  --color-ghost-0: #535351;
+  --color-ghost-1: #b0b0ad;
+
+  --breakpoint-2xl: 2560px;
+
+  /* Smallest viewport height at which the selected-work page fits the window
+     without pushing the footer out. Below it, the page stops fitting (body gets
+     this as min-height) and the horizontal wheel-scroll is disabled: */
+  --sw-short-viewport: min(76rem, max(52.5rem, 32vw + 25rem));
+  --sw-effective-vh: max(var(--sw-short-viewport), 100svh);
+
+  --animate-wave: wave 0.6s ease-in-out 1s 2;
+  --animate-wave-hover: wave 0.6s ease-in-out 2;
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(18deg);
+  }
+  50% {
+    transform: rotate(-8deg);
+  }
+  75% {
+    transform: rotate(18deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-wave,
+  .animate-wave-hover {
+    animation: none;
+  }
+}
+
+body {
+  max-width: var(--breakpoint-2xl);
+  min-height: 100svh;
+}
+
+@utility fluid-display-xs {
+  @apply font-sans;
+  font-size: max(1.5rem, min(4vw, calc(var(--sw-effective-vh) * 0.034), 2rem));
+  line-height: 1;
+}
+
+@utility fluid-display-sm {
+  @apply font-sans;
+  font-size: max(1.5rem, min(3.75vw, calc(var(--sw-effective-vh) * 0.065), 5.5rem));
+  line-height: 1;
+}
+
+@utility fluid-display-md {
+  @apply font-sans;
+  font-size: max(3rem, min(7vw, calc(var(--sw-effective-vh) * 0.09), 6.5rem));
+  line-height: 1;
+}
+
+@utility fluid-display-lg {
+  @apply font-sans;
+  font-size: max(4.5rem, min(13vw, calc(var(--sw-effective-vh) * 0.2), 16rem));
+  line-height: 1;
+}
+
+@utility fluid-display-xl {
+  @apply font-sans;
+  font-size: max(4rem, min(13vw, calc(var(--sw-effective-vh) * 0.22), 18rem));
+  line-height: 1;
+}
+
+@utility body-sm {
+  @apply font-mono;
+  font-size: max(0.8125rem, min(0.82vw, 1.35rem));
+  line-height: 1.6;
+}
+
+@utility body-md {
+  @apply font-mono;
+  font-size: max(0.875rem, min(0.82vw, 1.4rem));
+  line-height: 1.4;
+}
