@@ -1,6 +1,5 @@
 "use client";
 
-import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { ArrowLeft, ArrowRight } from "react-feather";
 import { Button } from "@/components/Button";
@@ -14,7 +13,7 @@ const EPSILON = 2;
 
 export const SelectedWorkNav = ({ trackRef }: SelectedWorkNavProps) => {
   const [canPrev, setCanPrev] = useState(false);
-  const [canNext, setCanNext] = useState(false);
+  const [canNext, setCanNext] = useState(true);
 
   // Where an in-flight smooth scroll is headed, so rapid clicks chain from
   // there instead of re-targeting the edge that scroll is already going to.
@@ -74,41 +73,30 @@ export const SelectedWorkNav = ({ trackRef }: SelectedWorkNavProps) => {
     track.scrollTo({ left: target, behavior: "smooth" });
   };
 
-  // Overflow is only known client-side, so fade in once it is.
   return (
-    <AnimatePresence>
-      {(canPrev || canNext) && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          className="flex gap-2"
-        >
-          <Button
-            hasIconOnly
-            variant="outline"
-            size="sm"
-            aria-label="Previous project"
-            disabled={!canPrev}
-            onClick={() => step(-1)}
-            className="disabled:pointer-events-none disabled:opacity-30"
-          >
-            <ArrowLeft size={18} aria-hidden />
-          </Button>
-          <Button
-            hasIconOnly
-            variant="outline"
-            size="sm"
-            aria-label="Next project"
-            disabled={!canNext}
-            onClick={() => step(1)}
-            className="disabled:pointer-events-none disabled:opacity-30"
-          >
-            <ArrowRight size={18} aria-hidden />
-          </Button>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <div className="flex gap-2">
+      <Button
+        hasIconOnly
+        variant="outline"
+        size="sm"
+        aria-label="Previous project"
+        disabled={!canPrev}
+        onClick={() => step(-1)}
+        className="disabled:pointer-events-none disabled:opacity-30"
+      >
+        <ArrowLeft size={18} aria-hidden />
+      </Button>
+      <Button
+        hasIconOnly
+        variant="outline"
+        size="sm"
+        aria-label="Next project"
+        disabled={!canNext}
+        onClick={() => step(1)}
+        className="disabled:pointer-events-none disabled:opacity-30"
+      >
+        <ArrowRight size={18} aria-hidden />
+      </Button>
+    </div>
   );
 };
