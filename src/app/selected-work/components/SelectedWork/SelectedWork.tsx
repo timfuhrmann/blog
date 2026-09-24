@@ -39,7 +39,7 @@ export const SelectedWork = ({ entries }: SelectedWorkProps) => (
             layoutScroll
             className={cn(
               styles.track,
-              "-mt-[100lvh] grid min-h-0 auto-cols-[min(21.5rem,85%)] grid-flow-col overflow-x-auto overscroll-x-contain pt-[100lvh] lg:auto-cols-[max(21.5rem,30%)]"
+              "-mt-[100lvh] grid min-h-0 auto-cols-[min(21.5rem,85%)] grid-flow-col overflow-x-auto overscroll-x-contain pt-[100lvh] lg:auto-cols-[max(21.5rem,30%)] xl:auto-cols-[max(21.5rem,26.5%)]"
             )}
           >
             {entries.map((item) => (

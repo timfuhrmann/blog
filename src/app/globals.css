@@ -98,7 +98,7 @@ body {
 
 @utility body-sm {
   @apply font-mono;
-  font-size: max(0.8125rem, min(0.82vw, 1.35rem));
+  font-size: max(0.8125rem, min(0.75vw, 1.25rem));
   line-height: 1.6;
 }
 
