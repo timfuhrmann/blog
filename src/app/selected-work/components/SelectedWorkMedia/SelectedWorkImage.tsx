@@ -40,7 +40,6 @@ export const SelectedWorkImage = ({
       <SelectedWorkThumbnail
         layoutId={layoutId}
         label={`Open image: ${title}`}
-        isOpen={lightbox.isOpen}
         isClosing={lightbox.isClosing}
         isInColor={lightbox.isInColor}
         onOpen={lightbox.open}

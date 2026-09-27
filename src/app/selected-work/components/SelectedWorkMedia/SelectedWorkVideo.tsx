@@ -34,7 +34,6 @@ export const SelectedWorkVideo = ({
       <SelectedWorkThumbnail
         layoutId={layoutId}
         label={`Play video: ${title}`}
-        isOpen={lightbox.isOpen}
         isClosing={lightbox.isClosing}
         isInColor={lightbox.isInColor}
         onOpen={lightbox.open}

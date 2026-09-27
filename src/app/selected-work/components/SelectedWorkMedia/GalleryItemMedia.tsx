@@ -26,6 +26,7 @@ export const GalleryItemMedia = ({
         sizes={isThumbnail ? "56px" : "(min-width: 768px) 768px, 100vw"}
         quality={isThumbnail ? undefined : 100}
         loading={isStage ? "eager" : undefined}
+        draggable={isThumbnail ? false : undefined}
         className={cn(
           "h-full w-full object-cover select-none",
           { ["object-contain"]: item.isContain && !isThumbnail },
