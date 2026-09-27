@@ -96,10 +96,8 @@ export const SelectedWorkLightbox = ({
                   />
                 }
               >
-                {/* Painted as a gradient, not a background-color: Safari tints its toolbar from the
-                    background-color of fixed elements at the top edge, and would turn it black. */}
                 <motion.div
-                  className="from-foreground-0/90 to-foreground-0/90 absolute inset-0 top-[env(safe-area-inset-top,0px)] -z-[1] cursor-zoom-out bg-linear-to-b"
+                  className="bg-foreground-0/90 absolute inset-0 -z-[1] cursor-zoom-out"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
