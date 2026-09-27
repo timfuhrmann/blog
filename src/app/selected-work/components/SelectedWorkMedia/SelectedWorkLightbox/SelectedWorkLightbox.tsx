@@ -148,6 +148,9 @@ export const SelectedWorkLightbox = ({
                     <motion.div
                       layoutId={layoutId}
                       layoutCrossfade={false}
+                      // Mounting and exiting drive the animation; nothing in between should
+                      // re-measure it (paging a gallery re-renders this mid-flight).
+                      layoutDependency={layoutId}
                       onLayoutAnimationComplete={onLayoutAnimationComplete}
                       className="border-border-0 bg-layer-2 pointer-events-auto relative aspect-[4/3] max-h-full w-full max-w-full overflow-hidden border md:w-[clamp(56rem,50vw,80rem)]"
                       style={color ? { backgroundColor: color } : undefined}

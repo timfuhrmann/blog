@@ -5,14 +5,12 @@ import {
   useContext,
   useEffect,
   useRef,
-  useState,
   type ReactNode,
   type RefObject,
   useMemo,
 } from "react";
 
 type SelectedWorkScrollValue = {
-  isPaused: boolean;
   setIsPaused: (isPaused: boolean) => void;
 };
 
@@ -32,19 +30,22 @@ type SelectedWorkScrollProviderProps = {
 
 export const SelectedWorkScrollProvider = ({ children }: SelectedWorkScrollProviderProps) => {
   const trackRef = useRef<HTMLDivElement>(null);
-  const [isPaused, setIsPaused] = useState(false);
+  // A ref, not state: the lightbox pauses on open and resumes on close, right
+  // as its layout animation starts. A re-render here would re-render every
+  // thumbnail, and Motion re-measures and restarts a layout animation whenever
+  // one of its elements re-renders mid-flight.
+  const isPausedRef = useRef(false);
 
   useEffect(() => {
     const section = document.querySelector<HTMLElement>("[data-root]");
     const track = trackRef.current;
     if (!section || !track) return;
 
-    if (isPaused) return; // let the lightbox be
-
     // Touch devices scroll the track natively.
     const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 
     const onWheel = (e: WheelEvent) => {
+      if (isPausedRef.current) return; // let the lightbox be
       if (!finePointer.matches) return;
       // If the page overflows vertically, keep regular vertical scrolling.
       if (document.body.scrollHeight > window.innerHeight) return;
@@ -61,11 +62,14 @@ export const SelectedWorkScrollProvider = ({ children }: SelectedWorkScrollProvi
 
     section.addEventListener("wheel", onWheel, { passive: false });
     return () => section.removeEventListener("wheel", onWheel);
-  }, [isPaused]);
+  }, []);
 
   return (
     <SelectedWorkScrollContext.Provider
-      value={useMemo(() => ({ isPaused, setIsPaused }), [isPaused])}
+      value={useMemo(
+        () => ({ setIsPaused: (isPaused: boolean) => void (isPausedRef.current = isPaused) }),
+        []
+      )}
     >
       {children(trackRef)}
     </SelectedWorkScrollContext.Provider>

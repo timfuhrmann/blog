@@ -10,6 +10,8 @@ export const GRAYSCALE_CLASS = "grayscale group-hover:grayscale-0 group-focus-vi
 type SelectedWorkThumbnailProps = {
   layoutId: string;
   label: string;
+  /** The lightbox is open. */
+  isOpen: boolean;
   /** The lightbox is shrinking back into this thumbnail. */
   isClosing: boolean;
   /** Match the lightbox's look: full colour, chips hidden. */
@@ -29,6 +31,7 @@ type SelectedWorkThumbnailProps = {
 export const SelectedWorkThumbnail = ({
   layoutId,
   label,
+  isOpen,
   isClosing,
   isInColor,
   onOpen,
@@ -42,6 +45,10 @@ export const SelectedWorkThumbnail = ({
     type="button"
     layoutId={layoutId}
     layoutCrossfade={false}
+    // Only opening and closing move this tile. Without a dependency, Motion
+    // re-measures on every re-render (hover, `settle`) and restarts any layout
+    // animation in flight from wherever it got to.
+    layoutDependency={isOpen}
     // Above the exiting lightbox (zIndex 51) so the fading backdrop can't cover it.
     style={{ zIndex: isClosing ? 52 : 0 }}
     onClick={onOpen}
