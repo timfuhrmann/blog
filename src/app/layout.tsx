@@ -2,7 +2,7 @@ import { cn } from "cn";
 import { Analytics } from "@/components/Analytics";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { ReactNode } from "react";
 import { Toaster } from "sonner";
 import "./globals.css";
@@ -29,6 +29,11 @@ export default function RootLayout({
     </html>
   );
 }
+
+// Mirrors --color-layer-0 in globals.css (meta tags can't read CSS variables).
+export const viewport: Viewport = {
+  themeColor: "#fcfcf7",
+};
 
 export const metadata: Metadata = {
   title: "Tim Fuhrmann",

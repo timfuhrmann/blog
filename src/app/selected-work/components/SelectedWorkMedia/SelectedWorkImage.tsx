@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Search } from "react-feather";
 import { ContentfulImage } from "@/components/ContentfulImage";
-import type { ContentfulAsset, SelectedWorkEntryFields } from "@/lib/contentful";
+import type { ContentfulAsset } from "@/lib/contentful";
 import { SelectedWorkLightbox } from "./SelectedWorkLightbox/SelectedWorkLightbox";
 import { GRAYSCALE_CLASS, MediaChip, SelectedWorkThumbnail } from "./SelectedWorkThumbnail";
 import { useLightboxState } from "./useLightboxState";
@@ -80,6 +80,8 @@ export const SelectedWorkImage = ({
           asset={media}
           alt={title}
           sizes="(min-width: 768px) 768px, 100vw"
+          // Same URL as the thumbnail, so it is already cached
+          loading="eager"
           className={cn("h-full w-full object-cover", {
             ["object-contain"]: isContain,
           })}
