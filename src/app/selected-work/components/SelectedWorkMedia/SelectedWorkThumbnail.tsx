@@ -65,7 +65,7 @@ export const SelectedWorkThumbnail = ({
     onMouseLeave={() => onHoverChange?.(false)}
     aria-label={label}
     className={cn(
-      "group border-border-0 bg-layer-2 relative mt-auto flex aspect-[4/3] w-full items-end overflow-hidden border text-left",
+      "group border-border-0 bg-layer-2 relative mt-auto flex aspect-[4/3] w-full items-end overflow-hidden border text-left will-change-transform",
       className
     )}
   >

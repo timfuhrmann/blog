@@ -151,7 +151,7 @@ export const SelectedWorkLightbox = ({
                       layoutCrossfade={false}
                       transition={LAYOUT_ARC_TRANSITION}
                       onLayoutAnimationComplete={onLayoutAnimationComplete}
-                      className="border-border-0 bg-layer-2 pointer-events-auto relative aspect-[4/3] max-h-full w-full max-w-full overflow-hidden border md:w-[clamp(56rem,50vw,80rem)]"
+                      className="border-border-0 bg-layer-2 pointer-events-auto relative aspect-[4/3] max-h-full w-full max-w-full overflow-hidden border will-change-transform md:w-[clamp(56rem,50vw,80rem)]"
                       style={color ? { backgroundColor: color } : undefined}
                     >
                       {children}
@@ -173,12 +173,12 @@ export const SelectedWorkLightbox = ({
                   )}
 
                   <LazyDiv className="[grid-area:text]">
-                    <div className="pointer-events-auto pb-4 text-center md:mx-auto md:max-w-3xl">
-                      <Dialog.Title className="body-md mb-2 tracking-wide uppercase">
+                    <div className="flex flex-col items-center pb-4 text-center md:mx-auto md:max-w-3xl">
+                      <Dialog.Title className="body-md pointer-events-auto mb-2 tracking-wide uppercase">
                         {title}
                       </Dialog.Title>
                       {description && (
-                        <Dialog.Description className="body-sm text-ghost-1">
+                        <Dialog.Description className="body-sm text-ghost-1 pointer-events-auto">
                           {description}
                         </Dialog.Description>
                       )}
@@ -187,7 +187,7 @@ export const SelectedWorkLightbox = ({
 
                   {gallery && (
                     <LazyDiv className="hidden [grid-area:gallery] md:block">
-                      <div className="pointer-events-auto -m-1 flex justify-center gap-2 overflow-x-auto p-1">
+                      <div className="-m-1 flex justify-center gap-2 overflow-x-auto p-1">
                         {gallery.items.map((item, i) => (
                           <button
                             key={i}
@@ -196,7 +196,7 @@ export const SelectedWorkLightbox = ({
                             aria-current={i === gallery.index}
                             onClick={() => gallery.onIndexChange(i)}
                             className={cn(
-                              "border-border-0 bg-layer-2 relative aspect-[4/3] w-[clamp(3.5rem,4vw,8rem)] shrink-0 cursor-pointer overflow-hidden border opacity-40 transition-opacity duration-150 hover:opacity-100 focus-visible:opacity-100",
+                              "border-border-0 bg-layer-2 pointer-events-auto relative aspect-[4/3] w-[clamp(3.5rem,4vw,8rem)] shrink-0 cursor-pointer overflow-hidden border opacity-40 transition-opacity duration-150 hover:opacity-100 focus-visible:opacity-100",
                               { ["border-foreground-2 opacity-100"]: i === gallery.index }
                             )}
                           >
