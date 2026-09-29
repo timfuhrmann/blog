@@ -1,11 +1,18 @@
 "use client";
 
-import { motion } from "motion/react";
+import { arc, motion } from "motion/react";
 import type { PropsWithChildren, ReactNode } from "react";
 import { cn } from "cn";
 
 /** Thumbnail media is grey until hovered or focused; the lightbox's copy never is. */
 export const GRAYSCALE_CLASS = "grayscale group-hover:grayscale-0 group-focus-visible:grayscale-0";
+
+/**
+ * Curved travel for the thumbnail ⇄ lightbox layout animation. Shared by both
+ * ends of the `layoutId` pair (the lightbox animates on open, the thumbnail on
+ * close) and kept at module scope so its continuity survives re-renders.
+ */
+export const LAYOUT_ARC_TRANSITION = { layout: { path: arc({ strength: 0.1 }) } };
 
 type SelectedWorkThumbnailProps = {
   layoutId: string;
@@ -42,6 +49,7 @@ export const SelectedWorkThumbnail = ({
     type="button"
     layoutId={layoutId}
     layoutCrossfade={false}
+    transition={LAYOUT_ARC_TRANSITION}
     // Above the exiting lightbox (zIndex 51) so the fading backdrop can't cover it.
     style={{ zIndex: isClosing ? 52 : 0 }}
     onClick={onOpen}

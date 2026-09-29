@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowRight, X } from "react-feather";
 import { Button } from "@/components/Button";
 import type { SelectedWorkGalleryItemFields } from "@/lib/contentful";
 import { GalleryItemMedia } from "../GalleryItemMedia";
+import { LAYOUT_ARC_TRANSITION } from "../SelectedWorkThumbnail";
 import { useSelectedWorkScroll } from "../../SelectedWork/SelectedWorkScroll";
 import { cn } from "cn";
 import styles from "./SelectedWorkLightbox.module.css";
@@ -148,6 +149,7 @@ export const SelectedWorkLightbox = ({
                     <motion.div
                       layoutId={layoutId}
                       layoutCrossfade={false}
+                      transition={LAYOUT_ARC_TRANSITION}
                       onLayoutAnimationComplete={onLayoutAnimationComplete}
                       className="border-border-0 bg-layer-2 pointer-events-auto relative aspect-[4/3] max-h-full w-full max-w-full overflow-hidden border md:w-[clamp(56rem,50vw,80rem)]"
                       style={color ? { backgroundColor: color } : undefined}
