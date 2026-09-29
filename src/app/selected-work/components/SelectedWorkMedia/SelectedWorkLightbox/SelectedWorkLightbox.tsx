@@ -86,7 +86,7 @@ export const SelectedWorkLightbox = ({
                 render={
                   <motion.div
                     layoutRoot
-                    className="text-foreground-2 fixed inset-0 isolate outline-none"
+                    className="text-foreground-2 fixed inset-0 isolate flex flex-col outline-none"
                     initial={{ pointerEvents: "auto", zIndex: 50 }}
                     animate={{ pointerEvents: "auto", zIndex: 50, opacity: 1 }}
                     // Base UI hides the popup once its own animations finish (`getAnimations()`), and
@@ -98,7 +98,7 @@ export const SelectedWorkLightbox = ({
                 }
               >
                 <motion.div
-                  className="bg-foreground-0/70 absolute inset-0 -z-[1] cursor-zoom-out"
+                  className="bg-foreground-0/80 absolute inset-0 -z-[1] cursor-zoom-out"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -106,10 +106,15 @@ export const SelectedWorkLightbox = ({
                   onClick={() => onOpenChange(false)}
                 />
 
+                {/* iOS 26 Safari tints its toolbars from fixed elements at the top and bottom edges, and
+                    only picks up the backdrop after its fade has settled. Static strips in the page color
+                    at both edges of the popup keep the toolbars unchanged on iOS. */}
+                <SafariToolbarStrip />
+
                 <div
                   className={cn(
                     gallery ? styles.gridGallery : styles.grid,
-                    "pointer-events-none absolute top-0 left-0 h-full w-full overflow-y-auto p-4 md:p-6"
+                    "pointer-events-none relative min-h-0 w-full flex-1 overflow-y-auto p-4 md:p-6"
                   )}
                 >
                   <div className="[grid-area:head]">
@@ -207,6 +212,8 @@ export const SelectedWorkLightbox = ({
                     </LazyDiv>
                   )}
                 </div>
+
+                <SafariToolbarStrip />
               </Dialog.Popup>
             </Dialog.Portal>
           )}
@@ -215,6 +222,10 @@ export const SelectedWorkLightbox = ({
     </>
   );
 };
+
+const SafariToolbarStrip = () => (
+  <div aria-hidden className="bg-layer-0 ios:block pointer-events-none hidden h-[5px] shrink-0" />
+);
 
 const MotionButton = motion.create(Button);
 

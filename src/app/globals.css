@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+/* iOS/iPadOS WebKit only (-webkit-touch-callout is unsupported everywhere else). */
+@custom-variant ios {
+  @supports (-webkit-touch-callout: none) {
+    @slot;
+  }
+}
+
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);

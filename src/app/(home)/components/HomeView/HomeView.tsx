@@ -27,7 +27,7 @@ export function HomeView({ children }: HomeViewProps) {
           md={{ col: ["split-1", "split-2"] }}
           className="fluid-display-sm p-4 text-center font-bold uppercase"
         >
-          <h2>Senior Software Engineer</h2>
+          <h2>Creative Software Engineer</h2>
         </Area>
 
         <Area
