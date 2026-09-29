@@ -97,7 +97,7 @@ export const SelectedWorkLightbox = ({
                 }
               >
                 <motion.div
-                  className="bg-foreground-0/90 absolute inset-0 -z-[1] cursor-zoom-out"
+                  className="bg-foreground-0/70 absolute inset-0 -z-[1] cursor-zoom-out"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
