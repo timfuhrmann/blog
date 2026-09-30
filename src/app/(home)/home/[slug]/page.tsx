@@ -25,8 +25,6 @@ export default async function SelectedWorkSlugPage({ params }: PageProps) {
   }
 
   return (
-    <HomeView>
-      <Cue message={entry.toast} />
-    </HomeView>
+    <HomeView>{entry.toast && <Cue message={entry.toast} />}</HomeView>
   );
 }

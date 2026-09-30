@@ -11,9 +11,18 @@ const CELL = "relative z-10";
 
 type HeaderProps = {
   renderIntro?: ReactNode;
+  hasHomeLink?: boolean;
 };
 
-export const Header = ({ renderIntro }: HeaderProps) => {
+export const Header = ({ renderIntro, hasHomeLink = true }: HeaderProps) => {
+  const title = (
+    <h1 className="body-md leading-tight font-medium">
+      Tim
+      <br />
+      Fuhrmann
+    </h1>
+  );
+
   return (
     <>
       <Padded
@@ -22,13 +31,13 @@ export const Header = ({ renderIntro }: HeaderProps) => {
         md={{ col: ["content-start", "split-1"] }}
         className={CELL}
       >
-        <Link href="/" className="inline-block">
-          <h1 className="body-md leading-tight font-medium">
-            Tim
-            <br />
-            Fuhrmann
-          </h1>
-        </Link>
+        {hasHomeLink ? (
+          <Link href="/" className="inline-block">
+            {title}
+          </Link>
+        ) : (
+          title
+        )}
       </Padded>
       <Padded
         row={ROW}

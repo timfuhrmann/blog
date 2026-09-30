@@ -29,8 +29,8 @@ export function proxy(request: NextRequest) {
     return NextResponse.rewrite(url, { headers: response.headers });
   }
 
-  if (hi && url.pathname === "/selected-work") {
-    url.pathname = `/selected-work/${hi}`;
+  if (url.pathname === "/selected-work") {
+    url.pathname = `/selected-work/${hi ?? "default"}`;
     return NextResponse.rewrite(url, { headers: response.headers });
   }
 

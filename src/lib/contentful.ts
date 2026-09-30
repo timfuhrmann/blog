@@ -48,8 +48,8 @@ export interface SelectedWorkEntryFields {
 export interface SelectedWorkFields {
   internalName: string;
   slug: string;
-  toast: string;
-  message: string;
+  toast?: string;
+  message?: string;
   entries: SelectedWorkEntryFields[];
 }
 

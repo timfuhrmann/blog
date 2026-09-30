@@ -14,6 +14,7 @@ export const dynamicParams = false;
 export const metadata: Metadata = {
   title: "Selected Work - Tim Fuhrmann",
   description: "A short tour of what I've built.",
+  robots: { index: false },
 };
 
 export async function generateStaticParams() {
@@ -33,19 +34,24 @@ export default async function SelectedWorkPage({ params }: PageProps) {
     notFound();
   }
 
+  const hasHomeLink = slug !== "default";
+
   return (
     <>
       <Layout className="min-h-0 flex-1 [grid-template-rows:auto_auto_minmax(0,1fr)]">
         <Header
+          hasHomeLink={hasHomeLink}
           renderIntro={
-            <p className="body-md">
-              <Message message={entry.message} />
-            </p>
+            entry.message && (
+              <p className="body-md">
+                <Message message={entry.message} />
+              </p>
+            )
           }
         />
         <SelectedWork entries={entry.entries} />
       </Layout>
-      <Footer hasHomeLink />
+      <Footer hasHomeLink={hasHomeLink} />
     </>
   );
 }
