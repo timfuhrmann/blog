@@ -1,5 +1,6 @@
 "use client";
 
+import { useReducedMotion } from "motion/react";
 import { useState } from "react";
 import { Copy } from "react-feather";
 import type { SelectedWorkEntryFields, SelectedWorkGalleryItemFields } from "@/lib/contentful";
@@ -24,6 +25,7 @@ export const SelectedWorkGallery = ({ entry, items }: SelectedWorkGalleryProps) 
   const lightbox = useLightboxState();
   const [isHovered, setIsHovered] = useState(false);
   const [index, setIndex] = useState(0);
+  const shouldReduceMotion = useReducedMotion();
 
   const layoutId = `media-${entry.title}`;
 
@@ -34,7 +36,9 @@ export const SelectedWorkGallery = ({ entry, items }: SelectedWorkGalleryProps) 
   const previewVideoUrl = preview.video && `https:${preview.video.fields.file.url}`;
   const previewSlotRef = useHoistedVideoSlotRef();
 
-  const isPreviewOnStage = index === 0 && !!previewVideoUrl;
+  // Reduced motion: the preview video stays in the thumbnail and the lightbox
+  // shows it like any other slide.
+  const isPreviewOnStage = index === 0 && !!previewVideoUrl && !shouldReduceMotion;
 
   const current = items[index];
 

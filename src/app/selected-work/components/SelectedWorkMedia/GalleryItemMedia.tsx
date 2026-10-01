@@ -2,7 +2,7 @@ import { ContentfulImage } from "@/components/ContentfulImage";
 import type { SelectedWorkGalleryItemFields } from "@/lib/contentful";
 import { cn } from "cn";
 
-const setInitialVolume = (el: HTMLVideoElement | null) => {
+export const setInitialVolume = (el: HTMLVideoElement | null) => {
   if (el) el.volume = 0.25;
 };
 

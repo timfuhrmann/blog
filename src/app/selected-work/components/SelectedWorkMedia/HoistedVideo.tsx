@@ -1,5 +1,6 @@
 "use client";
 
+import { useReducedMotion } from "motion/react";
 import { RefObject, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { preconnect } from "react-dom";
 import { GRAYSCALE_CLASS } from "./SelectedWorkThumbnail";
@@ -75,6 +76,10 @@ const useHoistedVideo = ({ slotRef, videoUrl, isOpen, isHovered }: UseHoistedVid
   // mismatch against when the video paints.
   const [hasFrame, setHasFrame] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  // Reduced motion: the video never leaves the thumbnail; the lightbox shows
+  // a copy of its own, so there is nothing to carry across.
+  const shouldReduceMotion = useReducedMotion();
+  const isLent = isOpen && !shouldReduceMotion;
 
   // Warm DNS + TLS to the asset host while the document is still parsing, so
   // the <video> below is not paying for the connection on its first byte.
@@ -90,12 +95,12 @@ const useHoistedVideo = ({ slotRef, videoUrl, isOpen, isHovered }: UseHoistedVid
   useLayoutEffect(() => {
     const el = videoRef.current;
     if (!el) return;
-    if (isOpen) {
+    if (isLent) {
       if (slotRef.current.stage) lend(slotRef.current.stage, el);
     } else if (slotRef.current.home) {
       reclaim(slotRef.current.home, el);
     }
-  }, [isOpen, slotRef]);
+  }, [isLent, slotRef]);
 
   // `loadeddata` can fire before hydration attaches the handler — media events
   // don't bubble, so React binds them to the element itself rather than the
@@ -110,25 +115,25 @@ const useHoistedVideo = ({ slotRef, videoUrl, isOpen, isHovered }: UseHoistedVid
   // the lightbox shuts the thumbnail is usually no longer hovered.
   useEffect(() => {
     const el = videoRef.current;
-    if (!el || isOpen) return;
-    if (isHovered) el.play().catch(() => {});
+    if (!el || isLent) return;
+    if (isHovered && !isOpen) el.play().catch(() => {});
     else el.pause();
-  }, [isHovered, isOpen]);
+  }, [isHovered, isOpen, isLent]);
 
   // Opening carries on from wherever the hover preview got to. Keyed on the
   // open state alone, so paging back to this item inside an open lightbox
   // can't restart it behind the visitor's back.
   useEffect(() => {
     const el = videoRef.current;
-    if (!el || !isOpen) return;
+    if (!el || !isLent) return;
     el.play().catch(() => {});
-  }, [isOpen]);
+  }, [isLent]);
 
   return {
     // The media fragment makes the browser seek on load and decode a frame up
     // front; without it a paused <video> stays blank on iOS Safari until played.
     src: `${videoUrl}#t=0.001`,
-    isHoisted: isOpen,
+    isHoisted: isLent,
     hasFrame,
     onLoadedData: () => setHasFrame(true),
     // Both refs have to be stable: a fresh callback on every render would

@@ -1,6 +1,6 @@
 "use client";
 
-import { arc, motion } from "motion/react";
+import { arc, motion, useReducedMotion } from "motion/react";
 import type { PropsWithChildren, ReactNode } from "react";
 import { cn } from "cn";
 
@@ -47,43 +47,48 @@ export const SelectedWorkThumbnail = ({
   renderChips,
   className,
   children,
-}: PropsWithChildren<SelectedWorkThumbnailProps>) => (
-  <motion.button
-    type="button"
-    layoutId={layoutId}
-    layoutCrossfade={false}
-    transition={LAYOUT_ARC_TRANSITION}
-    // Only opening and closing move this tile. Without a dependency, Motion
-    // re-measures on every re-render (hover, `settle`) and restarts any layout
-    // animation in flight from wherever it got to.
-    layoutDependency={isOpen}
-    // Above the exiting lightbox (zIndex 51) so the fading backdrop can't cover it.
-    style={{ zIndex: isClosing ? 52 : 0 }}
-    onClick={onOpen}
-    onLayoutAnimationComplete={onSettle}
-    onMouseEnter={() => onHoverChange?.(true)}
-    onMouseLeave={() => onHoverChange?.(false)}
-    aria-label={label}
-    className={cn(
-      "group border-border-0 bg-layer-2 relative mt-auto flex aspect-[4/3] w-full items-end overflow-hidden border text-left will-change-transform",
-      className
-    )}
-  >
-    {children}
-    {renderChips && (
-      <span
-        className={cn(
-          "pointer-events-none absolute bottom-0 left-0 flex w-full items-end justify-between p-3 transition-opacity duration-300 will-change-transform",
-          {
-            ["opacity-0"]: isInColor,
-          }
-        )}
-      >
-        {renderChips}
-      </span>
-    )}
-  </motion.button>
-);
+}: PropsWithChildren<SelectedWorkThumbnailProps>) => {
+  const shouldReduceMotion = useReducedMotion();
+
+  return (
+    <motion.button
+      type="button"
+      // Reduced motion: no shared-layout travel, the lightbox fades instead.
+      layoutId={shouldReduceMotion ? undefined : layoutId}
+      layoutCrossfade={false}
+      transition={LAYOUT_ARC_TRANSITION}
+      // Only opening and closing move this tile. Without a dependency, Motion
+      // re-measures on every re-render (hover, `settle`) and restarts any layout
+      // animation in flight from wherever it got to.
+      layoutDependency={isOpen}
+      // Above the exiting lightbox (zIndex 51) so the fading backdrop can't cover it.
+      style={{ zIndex: isClosing ? 52 : 0 }}
+      onClick={onOpen}
+      onLayoutAnimationComplete={onSettle}
+      onMouseEnter={() => onHoverChange?.(true)}
+      onMouseLeave={() => onHoverChange?.(false)}
+      aria-label={label}
+      className={cn(
+        "group border-border-0 bg-layer-2 relative mt-auto flex aspect-[4/3] w-full items-end overflow-hidden border text-left will-change-transform",
+        className
+      )}
+    >
+      {children}
+      {renderChips && (
+        <span
+          className={cn(
+            "pointer-events-none absolute bottom-0 left-0 flex w-full items-end justify-between p-3 transition-opacity duration-300 will-change-transform",
+            {
+              ["opacity-0"]: isInColor,
+            }
+          )}
+        >
+          {renderChips}
+        </span>
+      )}
+    </motion.button>
+  );
+};
 
 /** The square icon chip in the thumbnail's bottom-left corner. */
 export const MediaChip = ({ children }: PropsWithChildren) => (

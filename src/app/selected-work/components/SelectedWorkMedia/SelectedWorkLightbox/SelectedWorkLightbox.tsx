@@ -1,7 +1,7 @@
 "use client";
 
 import { Dialog } from "@base-ui/react/dialog";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ComponentProps, PropsWithChildren, useEffect, useRef } from "react";
 import { ArrowLeft, ArrowRight, X } from "react-feather";
 import { Button } from "@/components/Button";
@@ -45,6 +45,7 @@ export const SelectedWorkLightbox = ({
 }: PropsWithChildren<SelectedWorkLightboxProps>) => {
   const { setIsPaused } = useSelectedWorkScroll();
   const portalRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   // Pause the track's wheel hijacking while this lightbox is open.
   useEffect(() => {
@@ -137,7 +138,7 @@ export const SelectedWorkLightbox = ({
                   </div>
 
                   {gallery && (
-                    <div className="flex items-start justify-end py-1 [grid-area:prev] md:items-center">
+                    <div className="flex items-start justify-end [grid-area:prev] md:items-center md:py-1">
                       <LazyButton
                         hasIconOnly
                         variant="outline"
@@ -152,9 +153,19 @@ export const SelectedWorkLightbox = ({
 
                   <div className="mx-auto flex w-full min-w-0 justify-center [grid-area:media]">
                     <motion.div
-                      layoutId={layoutId}
-                      layoutCrossfade={false}
-                      transition={LAYOUT_ARC_TRANSITION}
+                      // Reduced motion: fade in place instead of travelling from the thumbnail.
+                      {...(shouldReduceMotion
+                        ? {
+                            initial: { opacity: 0 },
+                            animate: { opacity: 1 },
+                            exit: { opacity: 0 },
+                            transition: { duration: 0.2 },
+                          }
+                        : {
+                            layoutId,
+                            layoutCrossfade: false,
+                            transition: LAYOUT_ARC_TRANSITION,
+                          })}
                       onLayoutAnimationComplete={onLayoutAnimationComplete}
                       className="border-border-0 bg-layer-2 pointer-events-auto relative aspect-[4/3] max-h-full w-full max-w-full overflow-hidden border will-change-transform md:w-[clamp(56rem,50vw,80rem)]"
                       style={color ? { backgroundColor: color } : undefined}
@@ -164,7 +175,7 @@ export const SelectedWorkLightbox = ({
                   </div>
 
                   {gallery && (
-                    <div className="flex items-start py-1 [grid-area:next] md:items-center">
+                    <div className="flex items-start [grid-area:next] md:items-center md:py-1">
                       <LazyButton
                         hasIconOnly
                         variant="outline"

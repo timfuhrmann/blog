@@ -19,7 +19,7 @@ export const Footer = ({ hasHomeLink }: FooterProps) => {
 
 const FooterLink = ({ className, ...props }: ComponentProps<typeof Link>) => (
   <Link
-    className={cn("body-md text-foreground-0/60 hover:text-foreground-0", className)}
+    className={cn("body-md text-foreground-0/60 hover:text-foreground-0 active:text-foreground-0", className)}
     {...props}
   />
 );
