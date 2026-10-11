@@ -59,7 +59,7 @@ export const Button = ({
   if (props.href !== undefined) {
     const { href, ...rest } = props;
     return (
-      <Link href={href} className={classes} {...rest}>
+      <Link href={href} prefetch={true} className={classes} {...rest}>
         {children}
       </Link>
     );
