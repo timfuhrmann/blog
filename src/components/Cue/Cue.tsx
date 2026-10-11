@@ -15,7 +15,6 @@ export const Cue = ({ message }: CueProps) => {
   return (
     <div className="border-border-0 shrink-0 border-t font-medium">
       <Link
-        prefetch={true}
         href="/selected-work"
         className="group bg-layer-1 text-foreground-1 flex flex-wrap items-center justify-between gap-4 px-4 py-4 no-underline md:px-6"
         onMouseEnter={() => {

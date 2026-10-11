@@ -32,7 +32,7 @@ export const Header = ({ renderIntro, hasHomeLink = true }: HeaderProps) => {
         className={CELL}
       >
         {hasHomeLink ? (
-          <Link href="/" prefetch={true} className="inline-block">
+          <Link href="/" className="inline-block">
             {title}
           </Link>
         ) : (

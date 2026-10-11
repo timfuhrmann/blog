@@ -31,9 +31,10 @@ const HiLink = ({ href, ...props }: LinkProps) => {
  * links. External URLs and the param's absence are both left untouched. The
  * Suspense boundary keeps `useSearchParams` from opting whole pages into client
  * rendering — the fallback renders the plain link until the param resolves.
+ * Links prefetch by default; pass `prefetch={false}` to opt out.
  */
-export const Link = ({ href, ...props }: LinkProps) => (
-  <Suspense fallback={<NextLink href={href} {...props} />}>
-    <HiLink href={href} {...props} />
+export const Link = ({ href, prefetch = true, ...props }: LinkProps) => (
+  <Suspense fallback={<NextLink href={href} prefetch={prefetch} {...props} />}>
+    <HiLink href={href} prefetch={prefetch} {...props} />
   </Suspense>
 );
